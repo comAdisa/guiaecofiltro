@@ -322,6 +322,10 @@
         backgroundColors.push("#338DFF");
         backgroundColors.push("#66B2FF");
       }
+      // Agrega un segmento final para el cambio de filtro (en rojo)
+      data.push(1);
+      labels.push("¡Cambio de Filtro!");
+      backgroundColors.push("#FF3B3B");
 
       const lifespanCtx = document
         .getElementById("lifespanChart")
@@ -354,7 +358,10 @@
                 title: tooltipTitleCallback,
                 label: function (context) {
                   if (context.label === "Limpieza") {
-                    return "¡Limpieza recomendada!";
+                    return "¡Limpieza recomendada cada 6 meses!";
+                  }
+                  if (context.label === "¡Cambio de Filtro!") {
+                    return "¡Reemplaza el filtro después de 2 años!";
                   }
                   let label = context.dataset.label || "";
                   if (label) {
