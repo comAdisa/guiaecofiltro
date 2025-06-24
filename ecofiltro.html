@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guía Rápida de Usuario: Ecofiltro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      .chart-container {
+        position: relative;
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+        min-height: 300px;
+        margin: auto;
+      }
+      .flowchart-step {
+        position: relative;
+        padding-left: 2.5rem;
+        padding-bottom: 2.5rem;
+      }
+      .flowchart-step:not(:last-child)::before {
+        content: "";
+        position: absolute;
+        left: 1.125rem;
+        top: 2.5rem;
+        width: 2px;
+        height: 100%;
+        background-color: #338dff;
+      }
+      .flowchart-icon {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 2.5rem;
+        height: 2.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9999px;
+        font-weight: bold;
+        color: white;
+      }
+    </style>
+  </head>
+  <body class="bg-[#f0f8ff]">
+    <!--
+    Narrative Plan:
+    1. Introduction: Hook the user with a welcoming message and the product's value proposition.
+    2. First Steps (Preparation): Detail the initial cleaning process in a clear, step-by-step format using cards.
+    3. The Initial Filtration Process: Visualize the mandatory first filtration and waiting period using a custom CSS flowchart.
+    4. Key Facts and Maintenance: Combine key data points (lifespan, cleaning schedule) and a visual guide for valve installation. A donut chart will visualize the lifespan.
+    5. Conclusion: A final reassuring message.
+
+    Visualization Choices (NO SVG, NO Mermaid JS):
+    - Data: Welcome message. Goal: Inform. Visualization: Large typography and Unicode icon (💧). Method: HTML/Tailwind.
+    - Data: Cleaning steps (water, chlorine, no soap, sponge). Goal: Organize. Visualization: Styled cards with Unicode icons (💧, 🧪, 🚫, 🧽). Method: HTML/Tailwind.
+    - Data: First filtration process (Filter -> Discard -> Wait -> Ready). Goal: Organize. Visualization: CSS Flow Chart. Method: Structured HTML/CSS with Tailwind for styling, using pseudo-elements for connectors.
+    - Data: Lifespan (2 years). Goal: Inform/Compare. Visualization: Donut Chart. Method: Chart.js with Canvas rendering.
+    - Data: Maintenance schedule (3 months). Goal: Inform. Visualization: Single Big Number card. Method: HTML/Tailwind.
+    - Data: Valve assembly (2 gaskets). Goal: Organize. Visualization: Simple diagram using styled HTML divs to represent a cross-section. Method: HTML/Tailwind.
+
+    Color Palette Selection:
+    - Palette Name: Brilliant Blues
+    - HEX Codes: #004AAD, #0062E4, #338DFF, #66B2FF, #99D6FF
+    - Background: A very light blue (#f0f8ff) to complement the palette.
+    
+    Confirmation: NEITHER Mermaid JS NOR SVG were used in this output. All diagrams and charts are rendered using pure HTML/CSS, Unicode characters, or the Chart.js Canvas renderer.
+    -->
+
+    <header class="bg-[#004AAD] text-white text-center py-12 px-4">
+      <h1 class="text-4xl md:text-5xl font-black">
+        Guía Rápida de tu Ecofiltro
+      </h1>
+      <p class="mt-4 text-lg max-w-2xl mx-auto text-[#99D6FF]">
+        Tu fuente de agua pura y segura comienza aquí. Sigue esta guía para
+        disfrutar de todos los beneficios.
+      </p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+      <section id="preparacion" class="my-12">
+        <div class="text-center mb-10">
+          <h2 class="text-3xl font-bold text-[#004AAD]">
+            1. Preparación Inicial
+          </h2>
+          <p class="mt-2 text-gray-600 max-w-xl mx-auto">
+            Antes de tu primer sorbo, es fundamental preparar tu Ecofiltro
+            correctamente.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div
+            class="bg-white rounded-lg shadow-md p-6 text-center border-t-4 border-[#0062E4]"
+          >
+            <span class="text-5xl">💧</span>
+            <h3 class="text-xl font-bold mt-4 text-[#004AAD]">
+              Limpieza con Cloro
+            </h3>
+            <p class="mt-2 text-gray-700">
+              Lava la cubeta con 4 vasos de agua y solo 3 gotitas de cloro. Esto
+              desinfecta sin dañar.
+            </p>
+          </div>
+          <div
+            class="bg-white rounded-lg shadow-md p-6 text-center border-t-4 border-[#0062E4]"
+          >
+            <span class="text-5xl">🚫🧼</span>
+            <h3 class="text-xl font-bold mt-4 text-[#004AAD]">¡Sin Jabón!</h3>
+            <p class="mt-2 text-gray-700">
+              Es crucial no usar jabón ni detergentes, ya que pueden contaminar
+              el filtro y alterar el sabor del agua.
+            </p>
+          </div>
+          <div
+            class="bg-white rounded-lg shadow-md p-6 text-center border-t-4 border-[#0062E4]"
+          >
+            <span class="text-5xl">🧽</span>
+            <h3 class="text-xl font-bold mt-4 text-[#004AAD]">Esponja Nueva</h3>
+            <p class="mt-2 text-gray-700">
+              Para una higiene perfecta, te recomendamos usar una esponja nueva
+              exclusivamente para tu Ecofiltro.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="primer-filtrado" class="my-16">
+        <div class="text-center mb-10">
+          <h2 class="text-3xl font-bold text-[#004AAD]">
+            2. El Proceso de Acondicionamiento
+          </h2>
+          <p class="mt-2 text-gray-600 max-w-xl mx-auto">
+            El primer filtrado prepara y activa la unidad de filtración. ¡Este
+            paso es muy importante!
+          </p>
+        </div>
+        <div class="bg-white rounded-lg shadow-md p-8 max-w-2xl mx-auto">
+          <div class="flowchart-step flex items-start">
+            <div class="flowchart-icon bg-[#0062E4] flex-shrink-0">1</div>
+            <div class="ml-6">
+              <h3 class="text-xl font-bold text-[#004AAD]">
+                Realiza el Primer Filtrado
+              </h3>
+              <p class="mt-1 text-gray-700">
+                Llena la cubeta superior con agua y deja que se filtre
+                completamente hacia la cubeta inferior.
+              </p>
+            </div>
+          </div>
+          <div class="flowchart-step flex items-start">
+            <div class="flowchart-icon bg-[#0062E4] flex-shrink-0">2</div>
+            <div class="ml-6">
+              <h3 class="text-xl font-bold text-[#004AAD]">Descarta el Agua</h3>
+              <p class="mt-1 text-gray-700">
+                Esta primera agua <strong>no es para consumo</strong>. Vacía
+                completamente la cubeta inferior.
+              </p>
+            </div>
+          </div>
+          <div class="flowchart-step flex items-start">
+            <div class="flowchart-icon bg-[#0062E4] flex-shrink-0">3</div>
+            <div class="ml-6">
+              <h3 class="text-xl font-bold text-[#004AAD]">Espera 3 Días</h3>
+              <p class="mt-1 text-gray-700">
+                Después de descartar el agua, deja reposar el filtro húmedo
+                durante 3 días. Esto completa la activación.
+              </p>
+            </div>
+          </div>
+          <div class="flowchart-step flex items-start">
+            <div class="flowchart-icon bg-[#338DFF] flex-shrink-0">💧</div>
+            <div class="ml-6">
+              <h3 class="text-xl font-bold text-[#004AAD]">
+                ¡Listo para el Consumo!
+              </h3>
+              <p class="mt-1 text-gray-700">
+                A partir del segundo filtrado, tu agua es pura, segura y
+                deliciosa. ¡A disfrutar!
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="datos-clave" class="my-16">
+        <div class="text-center mb-10">
+          <h2 class="text-3xl font-bold text-[#004AAD]">
+            3. Datos Clave y Mantenimiento
+          </h2>
+          <p class="mt-2 text-gray-600 max-w-xl mx-auto">
+            Conoce tu Ecofiltro para asegurar su máxima eficiencia y
+            durabilidad.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+          <div
+            class="bg-white rounded-lg shadow-md p-6 flex flex-col justify-between border-t-4 border-[#338DFF]"
+          >
+            <div>
+              <h3 class="text-2xl font-bold text-center text-[#004AAD] mb-4">
+                Vida Útil del Filtro
+              </h3>
+              <p class="text-center text-gray-700 mb-4">
+                Tu unidad de filtración tiene una vida útil de 2 años. Este
+                gráfico te muestra el camino completo.
+              </p>
+              <div class="chart-container">
+                <canvas id="lifespanChart"></canvas>
+              </div>
+            </div>
+            <div class="mt-6 text-center bg-[#f0f8ff] p-4 rounded-lg">
+              <p class="text-gray-800 font-bold text-lg">
+                Limpieza Regular:
+                <span class="text-[#0062E4]">Cada 3 Meses</span>
+              </p>
+              <p class="text-sm text-gray-600">
+                Limpia el filtro para mantener un flujo de agua óptimo.
+              </p>
+            </div>
+          </div>
+          <div
+            class="bg-white rounded-lg shadow-md p-6 flex flex-col justify-center border-t-4 border-[#338DFF]"
+          >
+            <h3 class="text-2xl font-bold text-center text-[#004AAD] mb-6">
+              Instalación de la Válvula
+            </h3>
+            <p class="text-center text-gray-700 mb-6">
+              Para evitar fugas, asegúrate de colocar los dos empaques de goma
+              como se muestra en este diagrama simplificado.
+            </p>
+            <div
+              class="flex items-center justify-center space-x-2 w-full p-4 bg-gray-50 rounded-lg"
+            >
+              <div class="text-center">
+                <p class="font-bold text-[#0062E4]">Interior</p>
+              </div>
+              <div class="flex items-center">
+                <div
+                  class="w-8 h-8 bg-[#66B2FF] rounded-md flex items-center justify-center text-white font-bold text-sm"
+                >
+                  E1
+                </div>
+                <div
+                  class="w-1 h-16 bg-gray-400 mx-1 rounded-full"
+                  title="Pared de la Cubeta"
+                ></div>
+                <div
+                  class="w-8 h-8 bg-[#338DFF] rounded-md flex items-center justify-center text-white font-bold text-sm"
+                >
+                  E2
+                </div>
+              </div>
+              <div class="text-center">
+                <p class="font-bold text-[#0062E4]">Exterior</p>
+              </div>
+            </div>
+            <p class="mt-4 text-sm text-center text-gray-600">
+              Un empaque (E1) va por dentro y el otro (E2) por fuera, asegurando
+              un sello hermético.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-[#004AAD] text-white text-center py-6 px-4 mt-12">
+      <p>
+        ¡Disfruta de agua pura y saludable todos los días gracias a tu
+        Ecofiltro!
+      </p>
+    </footer>
+
+    <script>
+      function wrapLabels(label, maxWidth) {
+        const words = label.split(" ");
+        let lines = [];
+        let currentLine = words[0];
+        for (let i = 1; i < words.length; i++) {
+          if ((currentLine + " " + words[i]).length > maxWidth) {
+            lines.push(currentLine);
+            currentLine = words[i];
+          } else {
+            currentLine += " " + words[i];
+          }
+        }
+        lines.push(currentLine);
+        return lines;
+      }
+
+      const tooltipTitleCallback = (tooltipItems) => {
+        const item = tooltipItems[0];
+        let label = item.chart.data.labels[item.dataIndex];
+        if (Array.isArray(label)) {
+          return label.join(" ");
+        }
+        return label;
+      };
+
+      // Datos para 24 meses, con divisiones cada 6 meses (4 divisiones)
+      const meses = 24;
+      const limpiezaCada = 6;
+      const divisiones = meses / limpiezaCada; // 4 divisiones
+      const data = [];
+      const labels = [];
+      const backgroundColors = [];
+      for (let i = 0; i < divisiones; i++) {
+        data.push(limpiezaCada - 0.3); // segmento principal
+        data.push(0.3); // segmento pequeño para la división de limpieza
+        labels.push(`Meses ${i * limpiezaCada + 1}-${(i + 1) * limpiezaCada}`);
+        labels.push("Limpieza");
+        backgroundColors.push("#338DFF");
+        backgroundColors.push("#66B2FF");
+      }
+
+      const lifespanCtx = document
+        .getElementById("lifespanChart")
+        .getContext("2d");
+      const lifespanChart = new Chart(lifespanCtx, {
+        type: "doughnut",
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: "Meses",
+              data: data,
+              backgroundColor: backgroundColors,
+              borderColor: "#FFFFFF",
+              borderWidth: 4,
+              hoverOffset: 8,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: "70%",
+          plugins: {
+            legend: {
+              display: false,
+            },
+            tooltip: {
+              callbacks: {
+                title: tooltipTitleCallback,
+                label: function (context) {
+                  if (context.label === "Limpieza") {
+                    return "¡Limpieza recomendada!";
+                  }
+                  let label = context.dataset.label || "";
+                  if (label) {
+                    label += ": ";
+                  }
+                  if (context.parsed !== null) {
+                    label += context.parsed + " meses";
+                  }
+                  return label;
+                },
+              },
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
